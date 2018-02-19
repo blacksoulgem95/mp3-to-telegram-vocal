@@ -32,4 +32,4 @@ bot.on('message', (ctx) => {
     }
 });
 
-bot.startWebhook(process.env.BOT_TOKEN, null, process.env.PORT);
+bot.startWebhook(`/${process.env.BOT_TOKEN}`, null, process.env.PORT);
