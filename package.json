@@ -1,0 +1,23 @@
+{
+  "name": "mp3-to-telegram-vocal",
+  "version": "1.0.0",
+  "description": "Converts mp3 to telegram audio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITGuy9401/mp3-to-telegram-vocal.git"
+  },
+  "author": "Arcangelo Vicedomini",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ITGuy9401/mp3-to-telegram-vocal/issues"
+  },
+  "homepage": "https://github.com/ITGuy9401/mp3-to-telegram-vocal#readme",
+  "dependencies": {
+    "telegraf": "^3.18.0"
+  }
+}
