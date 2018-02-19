@@ -10,11 +10,13 @@ bot.start((ctx) => {
 
 bot.command('help', (ctx) => ctx.reply('Let\'s send an Mp3 file to this chat and see what happens 😁'));
 bot.on('message', (ctx) => {
-    console.log(ctx.message);
     try {
         if (!ctx.message.audio) {
             return ctx.reply('Please send an audio file');
         }
+
+        console.log(`Received audio file on chat with @${ctx.message.chat.username}`, ctx.message.audio);
+
         telegram.getFileLink(ctx.message.audio.file_id).then(audioLink => {
             ctx.replyWithVoice({
                 url: audioLink
