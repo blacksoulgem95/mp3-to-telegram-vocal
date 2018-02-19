@@ -1,7 +1,17 @@
 const Telegraf = require('telegraf');
+const express = require('express');
 const Telegram = require('telegraf/telegram');
 const telegram = new Telegram(process.env.BOT_TOKEN);
 const bot = new Telegraf(process.env.BOT_TOKEN);
+const expressApp = express();
+
+if (process.env.WEBHOOK === 'true') {
+    bot.telegram.setWebhook(`${process.env.HOST}/${process.env.BOT_TOKEN}`);
+    expressApp.use(bot.webhookCallback(`/${process.env.BOT_TOKEN}`));
+    expressApp.get('/', (req, res) => {
+        res.send('Hello World!');
+    });
+}
 
 bot.start((ctx) => {
     console.log('started:', ctx.from.id);
@@ -32,8 +42,9 @@ bot.on('message', (ctx) => {
 });
 
 if (process.env.WEBHOOK === 'true') {
-    bot.telegram.setWebhook(`${process.env.HOST}/${process.env.BOT_TOKEN}`);
-    bot.startWebhook(`/${process.env.BOT_TOKEN}`, null, process.env.PORT);
+    expressApp.listen(process.env.PORT, () => {
+        console.log(`Server running on port ${process.env.PORT}`);
+    });
 } else {
     bot.startPolling();
 }

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ITGuy9401/mp3-to-telegram-vocal#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "telegraf": "^3.18.0"
   }
 }
