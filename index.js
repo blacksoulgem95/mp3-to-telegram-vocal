@@ -15,8 +15,8 @@ bot.command('help', (ctx) => ctx.reply('Let\'s send an Mp3 file to this chat and
 bot.on('message', (ctx) => {
     console.log(ctx.message);
     try {
-        if (!ctx.message.audio || ctx.message.audio.mime_type !== 'audio/mpeg') {
-            return ctx.reply('Please send an audio/mpeg file');
+        if (!ctx.message.audio) {
+            return ctx.reply('Please send an audio file');
         }
         telegram.getFileLink(ctx.message.audio.file_id).then(audioLink => {
             ctx.replyWithVoice({
