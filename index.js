@@ -3,6 +3,9 @@ const Telegram = require('telegraf/telegram');
 const telegram = new Telegram(process.env.BOT_TOKEN);
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+// Set telegram webhook
+bot.telegram.setWebhook(`${process.env.HOST}/${process.env.BOT_TOKEN}`);
+
 bot.start((ctx) => {
     console.log('started:', ctx.from.id);
     return ctx.reply('Hello and welcome to the Mp3 To Vocal Bot! This bot has been developed by @ITGuy9401');
@@ -29,4 +32,4 @@ bot.on('message', (ctx) => {
     }
 });
 
-bot.startPolling();
+bot.startWebhook(process.env.BOT_TOKEN, null, process.env.PORT);
